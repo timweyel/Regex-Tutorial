@@ -1,10 +1,12 @@
-# Title (replace with your title)
+# Regex Tutorial
 
-Introductory paragraph (replace this with your text)
+This tutorial will be walking through a regular expression, or Regex, and breaking down what each code snippet means. 
 
 ## Summary
 
-Briefly summarize the regex you will be describing and what you will explain. Include a code snippet of the regex. Replace this text with your summary.
+I'm going to explain a regex that is used to match the format of an email address:
+
+`/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`
 
 ## Table of Contents
 
@@ -23,8 +25,20 @@ Briefly summarize the regex you will be describing and what you will explain. In
 ## Regex Components
 
 ### Anchors
+Anchors: ^ and $ - characters in a regex that indicate the qualifying match of any string that starts with or ends with ^ and $, respectively.
+
+Examples: 
+
+`^For any$` - this is looking for an exact match of any string that starts with `For any`
+
+`^For` - looks for a string that starts with `For`
+
+`any$` - tries to find a string that ends with `any`
+
+`thing` - finds a match for any string that has the text `thing` in it somewhere
 
 ### Quantifiers
+
 
 ### OR Operator
 
