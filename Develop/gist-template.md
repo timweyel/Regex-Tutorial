@@ -8,6 +8,8 @@ I'm going to explain a regex that is used to match the format of an email addres
 
 `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`
 
+(insert explanation here)
+
 ## Table of Contents
 
 - [Anchors](#anchors)
@@ -77,6 +79,8 @@ Examples:
 ### Flags
 `g m i` - these flags can be specified at the end of the  `/ /` regex to have the search pattern return as follows:
 
+Examples:
+
 `/baseball/g` - the g stands for 'global' and returns the first match. if you restart this search, it returns the rest of the matches
 
 `baseball/m` - the m stands for 'multi-line' and when you use `^` or `$` it searches the entire line of text, not only the string.
@@ -85,13 +89,45 @@ Examples:
 
 ### Grouping and Capturing
 
+`()` - used to extract information from strings or data and put in an array to allow for accessing via their index in said array.
 
+Examples:
+
+`x(yz)` - looks for the first occurrence of the string `yz` following `x`
+
+`x(2)` - looks for the first occurrence of the string `2` following `x`
+
+`x(?:)` - including `?:` disables the capture group
+
+`x(?<>)` - including `?<>` gives a name to the group
 
 ### Bracket Expressions
 
+`[]` - matches characters enclosed by `[]`
+`^` - using a `^` looks for any character *not* in the list
+`%` - including a `%` matches the string inside the brackets before the `%`
+
+Examples:
+
+`[abc]` - matches a string that has `x`, `xy`, or `xz`
+`[^h-m]` - matches a string that does not have a character from h to m, inclusive
+`[0-9]%` - matches a string that has a charater from 0-9 before a `%`
+
 ### Greedy and Lazy Match
 
+`Greedy` means to match the longest possible string
+
+`Lazy` means to match the shortest possible string
+
+Examples:
+
+`ba?` - matches a `b` character(case sensitive) and an `a` character or nothing. For example `abc` returns a match. `ac` does not. `acb` returns a match. `a83d` does not.
+
+`ba*` - matches a `b` character(case sensitive) and an `a` character as many times as possible. For example, `abc` returns a match. `ac` does not.  
+
 ### Boundaries
+
+boundar
 
 ### Back-references
 
