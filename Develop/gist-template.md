@@ -4,11 +4,37 @@ This tutorial will be walking through a regular expression, or Regex, and breaki
 
 ## Summary
 
-I'm going to explain a regex that is used to match the format of an email address:
+following is an explaination of a regex that is used to match the format of an email address:
 
 `/^([a-z0-9_\.-]+)@([\da-z\.-]+)\.([a-z\.]{2,6})$/`
 
-(insert explanation here)
+* the `^` anchor denotes the beginning of the string and the `$` denotes the end of the string
+
+* the 2 `+` are [quantifiers](#quantifiers) that connect the email address 'name', email services and the domain 
+
+* `\d`is a [character class](#character-classes) looing for charcters that are a digit from 0-9.
+
+* there are 3 [capture groups](#grouping-and-capturing).
+
+  * `([a-z0-9_\.-]+)` corresponding to the email user name
+
+  * `([\da-z\.-]+)` corresponding to the email service
+
+  * `([a-z\.]{2,6})` corresponding to the domain
+
+* the bracketed expressions include:
+
+  * the character set `a-z0-9_\.-` which is looking for any letter from 'a' to 'z' and is case sensitive, a character from '0-9' and any of the characters '_', '-', and '.'.
+
+  * `\da-z\.-` matches a single digit from '0-9', any character from 'a-z'(case sensitive) and the characters '.' and '-'.
+
+  * `a-z\.` matches any character from 'a-z'(case sensitive) and the character '.'.
+
+* greedy and lazy matching
+
+because the regex contains the `+` [quantifier](#quantifiers) matches as many times as it can, returning all matches. the `{}` looks for the domain group to be at least 3 characters and up to 6.
+
+
 
 ## Table of Contents
 
@@ -127,12 +153,39 @@ Examples:
 
 ### Boundaries
 
-boundar
+boundaries are the places between characters. the two types of boundaries are 'Word' and 'Non-word'.
+
+Examples:
+
+`\babc\b` matches whole words only for the string `abc`
+
+`\Bb\B` matches `abc`
+
+`B\c\B` does not match `abc`
 
 ### Back-references
 
+when using Grouping, you can capture the group and save it for using later. When you use this saved group, it's called Back-referencing.
+
+Examples:
+
+if you're trying to match a string that has a digit from 0-9 and a lowercase character you could search with `[0-9][a-z]`. This matches `2-n-9` and `2 a-4`. the backreferencing looks at the match that was found in the capture group and matches the location exactly. the previous example would become `[0-9]\1[a-z]` where the `\1` signifies the first capture group. this now matches `2-n-9` or `2 n 9` but not `2 a-9` or `2-a/9`
+
 ### Look-ahead and Look-behind
+
+you can have the following variations:
+
+* positive lookahead: `(?=pattern)` - looks for a match of the pattern without including the pattern in the match. For example, if your data is `abcdef`, then `abc(?=def)` matches `abc`
+
+* negative lookahead: `(?!pattern)` - if your data is `abcdef`, then `abc(?!def)` does not match
+
+* positive lookbehind: `(?<=pattern)` - if your data is `abcdef`, then `?<=abc(def)` matches `def`
+
+* negative lookbehind: `(?<!pattern)` - if your data is `abcdef`, then `(?<!abc)def` does not match
+
 
 ## Author
 
-A short section about the author with a link to the author's GitHub profile (replace with your information and a link to your profile)
+[Tim Weyel](https://github.com/timweyel) is currently (5/24/2021) a UC Berkeley bootcamp student studying Full Stack JavaScript.
+
+
